@@ -58,4 +58,17 @@ console.log(incrementFunc());
 console.log(incrementFunc());
 
 
+// Funcctional Programming
+
+/*
+    1. Task
+    2. Return statement
+    3. Pure
+    4. No shared states
+    5. Immutable State
+    6. Composable
+    7. Predictable
+*/
+
+
 
