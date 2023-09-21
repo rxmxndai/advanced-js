@@ -19,3 +19,8 @@
 // The event loop is a crucial part of JavaScript's concurrency model. It continuously checks the call stack and callback queue to determine if there are functions waiting to be executed.
 // When the call stack is empty and there are callbacks in the queue, the event loop takes the first callback from the queue and pushes it onto the call stack for execution.
 
+
+// JOB QUEUE
+// ANOTHER QUEUE FOR PROMISES
+// micro task queue (smaller that the callback queue but has more priority)
+

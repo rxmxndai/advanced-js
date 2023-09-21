@@ -43,17 +43,56 @@ const promise4 = new Promise((resolve, reject) => {
 */
 
 const urls = [
-    `https://jsonplaceholder.typicode.com/posts`,
-    `https://jsonplaceholder.typicode.com/comments`,
-    `https://jsonplaceholder.typicode.com/users`
+    `https://jsonplaceholder.typicode.com/posts?_limit=1`,
+    `https://jsonplaceholder.typicode.com/comments?_limit=1`,
+    `https://jsonplaceholder.typicode.com/users?_limit=1`
 ]
 
-Promise.all(urls.map(url => {
-    return fetch(url).then(resp => resp.json())
-}))
-.then(results => {
-    console.log(results[0]);
-    console.log(results[1]);
-    console.log(results[2]);
+/*
+    Promise.all(urls.map(url => {
+        // return fetch(url).then(resp => resp.json())
+        return []
+    }))
+    .then(results => {
+        // throw Error("Something went wrong!")
+        // console.log(results[0]);
+        // console.log(results[1]);
+        // console.log(results[2]);
+    })
+    .catch(err => console.log(err))
+    .finally(() => {
+        console.log("Finally Invoked!");
+    })
+*/
+
+
+// FOR AWAIT OF feature
+
+const loopThroughURLs = async function () {
+    const arrayOfPromises = urls.map(url => fetch(url))
+    console.log(arrayOfPromises);
+    for await (let request of arrayOfPromises) {
+        const data = await request.json();
+        console.log(data);
+    }
+ 
+}
+
+
+// loopThroughURLs();
+
+const promiseA = new Promise((resolve, reject) => 
+    setTimeout(resolve, 1000)
+)
+const promiseB = new Promise((resolve, reject) => 
+    setTimeout(reject, 1000)
+)
+
+
+Promise.allSettled([promiseA, promiseB]).then(data => {
+    console.log(data);
 })
-.catch(err => console.log(err))
+.catch(err => console.log("Wrong implementation!"))
+
+
+
